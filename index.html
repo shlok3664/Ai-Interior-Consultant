@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Interior Design Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-color-rgb: 248 250 252; /* slate-50 */
+        --text-color-rgb: 15 23 42;  /* slate-900 */
+        --gradient-start: 241 245 249; /* slate-100 */
+        --gradient-end: 226 232 240; /* slate-200 */
+      }
+      html.dark {
+        --bg-color-rgb: 15 23 42;   /* slate-900 */
+        --text-color-rgb: 248 250 252; /* slate-50 */
+        --gradient-start: 30 41 59; /* slate-800 */
+        --gradient-end: 2 6 23; /* slate-950 */
+      }
+      @keyframes gradient-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        color: rgb(var(--text-color-rgb));
+        background: linear-gradient(315deg, rgb(var(--gradient-start)), rgb(var(--gradient-end)));
+        background-size: 200% 200%;
+        animation: gradient-animation 25s ease infinite;
+        transition: background 0.5s ease-in-out;
+      }
+      /* Custom scrollbar for webkit browsers */
+      .scrollbar-thin::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+      }
+      .scrollbar-thin::-webkit-scrollbar-track {
+        background-color: #f1f5f9; /* slate-100 */
+        border-radius: 10px;
+      }
+      .scrollbar-thin::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1; /* slate-300 */
+        border-radius: 10px;
+        border: 2px solid #f1f5f9; /* slate-100 */
+      }
+      .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background-color: #94a3b8; /* slate-400 */
+      }
+      /* Dark Mode Scrollbar */
+      html.dark .scrollbar-thin::-webkit-scrollbar-track {
+        background-color: #1e293b; /* slate-800 */
+      }
+      html.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+        background-color: #475569; /* slate-600 */
+        border-color: #1e293b; /* slate-800 */
+      }
+      html.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background-color: #64748b; /* slate-500 */
+      }
+      /* Animation keyframes */
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.5s ease-out forwards;
+      }
+      @keyframes shake-horizontal {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+      }
+      .animate-shake {
+        animation: shake-horizontal 0.5s cubic-bezier(.36,.07,.19,.97) both;
+      }
+      /* Glow effect for cards */
+      .glow-card {
+        position: relative;
+        overflow: hidden;
+      }
+      .glow-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 1rem; /* match the card's rounded-2xl */
+        border: 2px solid transparent;
+        background: conic-gradient(from 180deg at 50% 50%, rgba(124, 58, 237, 0.8) 0deg, rgba(236, 72, 153, 0.8) 110deg, rgba(217, 70, 239, 0.8) 220deg, rgba(124, 58, 237, 0.8) 360deg) border-box;
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+      }
+      .glow-card:hover::before {
+        opacity: 1;
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
+  }
+}
+</script>
+</head>
+  <body class="antialiased">
+    <div id="root"></div>
+  </body>
+</html>
